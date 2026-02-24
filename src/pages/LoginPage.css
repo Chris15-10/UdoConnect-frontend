@@ -1,0 +1,247 @@
+:root {
+  /* Colores extraídos de la imagen */
+  --login-bg-left: #1a1a2e;
+  /* Fondo oscuro izquierdo */
+  --login-bg-right: #16213e;
+  /* Fondo un poco más claro derecho */
+  --login-input-bg: #0f3460;
+  /* Fondo de los inputs */
+  --login-accent: #00d4ff;
+  /* Color cian del degradado */
+  --login-accent-dark: #0066ff;
+  /* Color azul del degradado */
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+}
+
+.login-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  /* Asegúrate de tener esta fuente importada */
+}
+
+/* --- Panel Izquierdo --- */
+.login-info {
+  flex: 1;
+  background-color: var(--login-bg-left);
+  padding: 6rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--text-primary);
+}
+
+.login-info h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--login-accent), var(--login-accent-dark));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.login-description {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+.login-features {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 3rem;
+}
+
+.login-features li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+}
+
+.feature-icon {
+  color: var(--login-accent);
+}
+
+.login-buttons {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.btn {
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  /* Bordes redondeados como en la imagen */
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--login-accent);
+  color: var(--login-accent);
+}
+
+.btn-outline:hover {
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, var(--login-accent), var(--login-accent-dark));
+  border: none;
+  color: var(--text-primary);
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+}
+
+/* --- Panel Derecho (Formulario) --- */
+.login-form-container {
+  flex: 1;
+  background-color: var(--login-bg-right);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.login-form-box {
+  width: 100%;
+  max-width: 400px;
+  padding: 3rem;
+  color: var(--text-primary);
+}
+
+.login-form-box h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  background-color: var(--login-input-bg);
+  border-radius: 50px;
+  padding: 0.8rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.input-icon {
+  color: var(--text-secondary);
+  margin-right: 1rem;
+}
+
+.input-group input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.input-group input::placeholder {
+  color: var(--text-secondary);
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.forgot-password {
+  color: var(--login-accent);
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.btn-submit {
+  width: 100%;
+  background: linear-gradient(90deg, var(--login-accent), var(--login-accent-dark));
+  border: none;
+  color: var(--text-primary);
+  padding: 1rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+  opacity: 0.9;
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+}
+
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Mensaje de error en el formulario */
+.login-error {
+  background: rgba(255, 80, 80, 0.12);
+  border: 1px solid rgba(255, 80, 80, 0.4);
+  color: #ff8080;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+  }
+
+  .login-info {
+    padding: 3rem 2rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .login-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .login-form-container {
+    padding: 2rem;
+  }
+
+  .login-form-box {
+    padding: 2rem 1.5rem;
+  }
+}

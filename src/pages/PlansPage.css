@@ -1,0 +1,14 @@
+/* PlansPage.css */
+.plans-section {
+    margin-bottom: 0;
+    padding: var(--spacing-4xl) 0;
+}
+
+.plans-section h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.plans-alt {
+    background: var(--color-bg-secondary);
+}
