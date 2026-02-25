@@ -17,13 +17,8 @@ import { LoginPage } from "./pages/LoginPage.jsx";
 import { RegisterPage } from "./pages/RegisterPage.jsx";
 
 // Vistas Privadas (Asesores)
-import { Dashboard } from "./pages/Dashboard.jsx";
 import { LiveChats } from "./pages/LiveChats.jsx";
-import { Calls } from "./pages/Calls.jsx";
-import { Clients } from "./pages/Clients.jsx";
-import { Advisors } from "./pages/Advisors.jsx";
 import { Bots } from "./pages/Bots.jsx";
-import { Categories } from "./pages/Categories.jsx";
 
 function App() {
   return (
@@ -45,13 +40,9 @@ function App() {
       {/* 🏢 MUNDO PRIVADO (Requiere sesión de asesor o admin) */}
       <Route element={<ProtectedRoute allowedRoles={['asesor', 'admin']} />}>
         <Route element={<Layout />}>
-          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/chats" element={<LiveChats />} />
-          <Route path="/llamadas" element={<Calls />} />
-          <Route path="/clientes" element={<Clients />} />
-          <Route path="/asesores" element={<Advisors />} />
           <Route path="/bots" element={<Bots />} />
-          <Route path="/categorias" element={<Categories />} />
+          <Route path="/" element={<Navigate to="/chats" replace />} />
         </Route>
       </Route>
 

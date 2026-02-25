@@ -28,7 +28,7 @@ export const LoginPage = () => {
 
       // Redirigir según el rol
       if (user.rol === 'asesor' || user.rol === 'admin') {
-        navigate('/dashboard', { replace: true });
+        navigate('/chats', { replace: true });
       } else {
         // cliente → vista pública
         navigate('/', { replace: true });

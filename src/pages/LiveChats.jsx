@@ -142,7 +142,7 @@ export const LiveChats = () => {
       {/* Encabezado */}
       <div className="lc-header">
         <div>
-          <h1 className="lc-title">💬 Chats en Tiempo Real</h1>
+          <h1 className="lc-title">Chats en Tiempo Real</h1>
           <p className="lc-subtitle">Sesiones escaladas a asesor humano</p>
         </div>
         <button className="lc-refresh-btn" onClick={fetchSessions} title="Refrescar sesiones">

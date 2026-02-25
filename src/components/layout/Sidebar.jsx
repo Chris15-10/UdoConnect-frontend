@@ -3,13 +3,8 @@ import { useAuth } from "../../context/AuthContext.jsx";
 import "./Sidebar.css";
 
 const NAV_ITEMS = [
-  { to: "/dashboard", icon: "📊", label: "Dashboard" },
   { to: "/chats", icon: "💬", label: "Chats en Vivo" },
-  { to: "/llamadas", icon: "📞", label: "Llamadas" },
-  { to: "/clientes", icon: "👥", label: "Clientes" },
-  { to: "/asesores", icon: "👨‍💼", label: "Asesores" },
-  { to: "/bots", icon: "🤖", label: "Bots" },
-  { to: "/categorias", icon: "🏷️", label: "Categorías" },
+  { to: "/bots", icon: "🤖", label: "Historial de Bots" },
 ];
 
 export const Sidebar = () => {

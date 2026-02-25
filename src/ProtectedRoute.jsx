@@ -10,7 +10,7 @@ import { Outlet, Navigate } from "react-router-dom";
  *
  * Uso en App.jsx:
  *   <Route element={<ProtectedRoute allowedRoles={['asesor', 'admin']} />}>
- *     <Route path="/dashboard" element={<Dashboard />} />
+ *     <Route path="/chats" element={<LiveChats />} />
  *   </Route>
  */
 export const ProtectedRoute = ({ allowedRoles }) => {
