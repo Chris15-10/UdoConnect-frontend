@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useStartFlow } from '../hooks/useStartFlow.js';
 import './AboutPage.css';
 
 export const AboutPage = () => {
+    const { handleStartFlow } = useStartFlow();
     return (
         <>
             {/* PAGE HEADER */}

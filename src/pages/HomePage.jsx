@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './HomePage.css';
+import { useStartFlow } from '../hooks/useStartFlow.js';        
+
 
 const streamingPlans = [
   {
@@ -36,6 +38,8 @@ const streamingPlans = [
 ];
 
 export const HomePage = () => {
+  const { handleStartFlow } = useStartFlow();
+
   const [activeTab, setActiveTab] = useState(0);
 
   return (
@@ -230,9 +234,9 @@ export const HomePage = () => {
                 <li>Soporte 24/7</li>
                 <li>Sin Contrato</li>
               </ul>
-              <Link to="/contacto?plan=basico" className="btn btn-outline" style={{ width: '100%' }}>
+              <button onClick={() => handleStartFlow('inicio_ventas')} className="btn btn-outline" style={{ width: '100%' }}>
                 Seleccionar Plan
-              </Link>
+              </button>
             </div>
 
             <div className="price-card featured">
@@ -246,9 +250,9 @@ export const HomePage = () => {
                 <li>Soporte Prioritario</li>
                 <li>TV Box Gratis</li>
               </ul>
-              <Link to="/contacto?plan=estandar" className="btn btn-primary" style={{ width: '100%' }}>
+               <button onClick={() => handleStartFlow('inicio_ventas')} className="btn btn-outline" style={{ width: '100%' }}>
                 Seleccionar Plan
-              </Link>
+              </button>
             </div>
 
             <div className="price-card">
@@ -263,9 +267,9 @@ export const HomePage = () => {
                 <li>2 TV Box Gratis</li>
                 <li>Instalación Gratis</li>
               </ul>
-              <Link to="/planes" className="btn btn-outline" style={{ width: '100%' }}>
+              <button onClick={() => handleStartFlow('inicio_ventas')} className="btn btn-outline" style={{ width: '100%' }}>
                 Seleccionar Plan
-              </Link>
+              </button>
             </div>
           </div>
         </div>

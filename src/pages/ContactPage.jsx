@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useStartFlow } from '../hooks/useStartFlow.js';
 import './ContactPage.css';
 
 export const ContactPage = () => {
+    const { handleStartFlow } = useStartFlow();
     const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
     const [submitted, setSubmitted] = useState(false);
 
@@ -95,9 +97,9 @@ export const ContactPage = () => {
                                     Para emergencias técnicas, nuestro equipo está disponible las 24 horas del día,
                                     los 7 días de la semana.
                                 </p>
-                                <a href="tel:+0001244152088" className="btn btn-primary" style={{ marginTop: 'var(--spacing-md)', display: 'inline-flex' }}>
+                                <button onClick={() => handleStartFlow('inicio')} className="btn btn-primary" style={{ marginTop: 'var(--spacing-md)', display: 'inline-flex' }}>
                                     Llamar Ahora
-                                </a>
+                                </button>
                             </div>
                         </div>
 

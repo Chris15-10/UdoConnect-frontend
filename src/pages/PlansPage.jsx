@@ -1,33 +1,9 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext.jsx';
-import { api } from '../api/axios.js';
+import { Link } from 'react-router-dom';
+import { useStartFlow } from '../hooks/useStartFlow.js';
 import './PlansPage.css';
 
 export const PlansPage = () => {
-    const { isAuthenticated } = useAuth();
-    const navigate = useNavigate();
-
-    const handleStartFlow = async (flowCode) => {
-        if (!isAuthenticated) {
-            alert('Por favor inicia sesión para contratar un plan.');
-            navigate('/login');
-            return;
-        }
-
-        try {
-            const { data: checkData } = await api.get('/chat/session/check');
-            if (checkData.hasActive) {
-                const confirm = window.confirm("Tienes una sesión de chat activa. Si continúas, se reemplazará por esta nueva solicitud. ¿Deseas continuar?");
-                if (!confirm) return;
-            }
-
-            const { data: sessionData } = await api.post('/chat/session/flow', { flow: flowCode });
-            window.dispatchEvent(new CustomEvent('open-chat', { detail: { sessionId: sessionData.sessionId } }));
-        } catch (error) {
-            console.error('Error starting flow:', error);
-            alert('Hubo un error al iniciar el proceso.');
-        }
-    };
+    const { handleStartFlow } = useStartFlow();
 
     return (
         <>
