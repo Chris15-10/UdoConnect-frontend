@@ -122,6 +122,21 @@ export const LiveChats = () => {
     }
   };
 
+  const handleEndSession = async () => {
+    if (!selectedSession) return;
+    if (!window.confirm("¿Seguro que deseas finalizar esta sesión y marcarla como resuelta?")) return;
+
+    try {
+      await api.post(`/chat/session/${selectedSession.id_sesion}/end`);
+      setSelected(null);
+      setSelectedSid(null);
+      fetchSessions(); // Recargar la lista de chats abiertos
+    } catch (e) {
+      console.error('[LiveChats] end session:', e);
+      alert('Error al finalizar la sesión');
+    }
+  };
+
   return (
     <div className="lc-page">
       {/* Encabezado */}
@@ -179,6 +194,12 @@ export const LiveChats = () => {
                   </div>
                 </div>
                 <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                  <button
+                    className="btn btn-outline"
+                    style={{ padding: '0.2rem 0.5rem', fontSize: '0.8rem', color: '#dc2626', borderColor: '#dc2626' }}
+                    onClick={handleEndSession}
+                    title="Finalizar esta sesión y marcarla como resuelta"
+                  >Terminar</button>
                   <button
                     className="lc-icon-btn"
                     onClick={() => setSelectedSid(sid => { const s = sid; setSelectedSid(null); setTimeout(() => setSelectedSid(s), 0); return null; })

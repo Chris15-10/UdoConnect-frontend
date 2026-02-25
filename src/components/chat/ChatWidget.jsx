@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { api } from '../../api/axios.js';
@@ -41,6 +41,20 @@ export const ChatWidget = () => {
         setIsOpen(true);
         initSession();
     };
+
+    // ── Escuchar evento global para abrir chat ──
+    useEffect(() => {
+        const onOpenChat = (e) => {
+            setIsOpen(true);
+            if (e.detail?.sessionId) {
+                setSessionId(e.detail.sessionId);
+            } else {
+                initSession();
+            }
+        };
+        window.addEventListener('open-chat', onOpenChat);
+        return () => window.removeEventListener('open-chat', onOpenChat);
+    }, [initSession]);
 
     // ── Enviar mensaje (Optimistic UI) ──
     const handleSend = async (e) => {

@@ -1,7 +1,34 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext.jsx';
+import { api } from '../api/axios.js';
 import './PlansPage.css';
 
 export const PlansPage = () => {
+    const { isAuthenticated } = useAuth();
+    const navigate = useNavigate();
+
+    const handleStartFlow = async (flowCode) => {
+        if (!isAuthenticated) {
+            alert('Por favor inicia sesión para contratar un plan.');
+            navigate('/login');
+            return;
+        }
+
+        try {
+            const { data: checkData } = await api.get('/chat/session/check');
+            if (checkData.hasActive) {
+                const confirm = window.confirm("Tienes una sesión de chat activa. Si continúas, se reemplazará por esta nueva solicitud. ¿Deseas continuar?");
+                if (!confirm) return;
+            }
+
+            const { data: sessionData } = await api.post('/chat/session/flow', { flow: flowCode });
+            window.dispatchEvent(new CustomEvent('open-chat', { detail: { sessionId: sessionData.sessionId } }));
+        } catch (error) {
+            console.error('Error starting flow:', error);
+            alert('Hubo un error al iniciar el proceso.');
+        }
+    };
+
     return (
         <>
             {/* PAGE HEADER */}
@@ -37,7 +64,7 @@ export const PlansPage = () => {
                                 <li>Instalación Gratis</li>
                                 <li>Soporte 24/7</li>
                             </ul>
-                            <Link to="/contacto" className="btn btn-outline" style={{ width: '100%' }}>Contratar Ahora</Link>
+                            <button onClick={() => handleStartFlow('inicio_ventas')} className="btn btn-outline" style={{ width: '100%' }}>Contratar Ahora</button>
                         </div>
                         <div className="price-card featured">
                             <h3>Estándar HD</h3>
@@ -50,7 +77,7 @@ export const PlansPage = () => {
                                 <li>Grabación DVR</li>
                                 <li>2 Decodificadores</li>
                             </ul>
-                            <Link to="/contacto" className="btn btn-primary" style={{ width: '100%' }}>Contratar Ahora</Link>
+                            <button onClick={() => handleStartFlow('inicio_ventas')} className="btn btn-primary" style={{ width: '100%' }}>Contratar Ahora</button>
                         </div>
                         <div className="price-card">
                             <h3>Premium 4K</h3>
@@ -64,7 +91,7 @@ export const PlansPage = () => {
                                 <li>3 Decodificadores</li>
                                 <li>App Móvil</li>
                             </ul>
-                            <Link to="/contacto" className="btn btn-outline" style={{ width: '100%' }}>Contratar Ahora</Link>
+                            <button onClick={() => handleStartFlow('inicio_ventas')} className="btn btn-outline" style={{ width: '100%' }}>Contratar Ahora</button>
                         </div>
                     </div>
                 </div>
@@ -92,7 +119,7 @@ export const PlansPage = () => {
                                 <li>Sin límite de datos</li>
                                 <li>Instalación Gratis</li>
                             </ul>
-                            <Link to="/contacto" className="btn btn-outline" style={{ width: '100%' }}>Contratar Ahora</Link>
+                            <button onClick={() => handleStartFlow('inicio_ventas')} className="btn btn-outline" style={{ width: '100%' }}>Contratar Ahora</button>
                         </div>
                         <div className="price-card featured">
                             <h3>Internet Rápido</h3>
@@ -106,7 +133,7 @@ export const PlansPage = () => {
                                 <li>Sin límite de datos</li>
                                 <li>Soporte Prioritario</li>
                             </ul>
-                            <Link to="/contacto" className="btn btn-primary" style={{ width: '100%' }}>Contratar Ahora</Link>
+                            <button onClick={() => handleStartFlow('inicio_ventas')} className="btn btn-primary" style={{ width: '100%' }}>Contratar Ahora</button>
                         </div>
                         <div className="price-card">
                             <h3>Internet Ultra</h3>
@@ -121,7 +148,7 @@ export const PlansPage = () => {
                                 <li>IP Estática Gratis</li>
                                 <li>Soporte VIP 24/7</li>
                             </ul>
-                            <Link to="/contacto" className="btn btn-outline" style={{ width: '100%' }}>Contratar Ahora</Link>
+                            <button onClick={() => handleStartFlow('inicio_ventas')} className="btn btn-outline" style={{ width: '100%' }}>Contratar Ahora</button>
                         </div>
                     </div>
                 </div>
@@ -148,7 +175,7 @@ export const PlansPage = () => {
                                 <li>4G LTE</li>
                                 <li>Sin Contrato</li>
                             </ul>
-                            <Link to="/contacto" className="btn btn-outline" style={{ width: '100%' }}>Contratar Ahora</Link>
+                            <button onClick={() => handleStartFlow('inicio_ventas')} className="btn btn-outline" style={{ width: '100%' }}>Contratar Ahora</button>
                         </div>
                         <div className="price-card featured">
                             <h3>Móvil Plus</h3>
@@ -161,7 +188,7 @@ export const PlansPage = () => {
                                 <li>Roaming Nacional</li>
                                 <li>Hotspot Móvil</li>
                             </ul>
-                            <Link to="/contacto" className="btn btn-primary" style={{ width: '100%' }}>Contratar Ahora</Link>
+                            <button onClick={() => handleStartFlow('inicio_ventas')} className="btn btn-primary" style={{ width: '100%' }}>Contratar Ahora</button>
                         </div>
                         <div className="price-card">
                             <h3>Móvil Ilimitado</h3>
@@ -175,7 +202,7 @@ export const PlansPage = () => {
                                 <li>Hotspot Ilimitado</li>
                                 <li>Streaming Premium</li>
                             </ul>
-                            <Link to="/contacto" className="btn btn-outline" style={{ width: '100%' }}>Contratar Ahora</Link>
+                            <button onClick={() => handleStartFlow('inicio_ventas')} className="btn btn-outline" style={{ width: '100%' }}>Contratar Ahora</button>
                         </div>
                     </div>
                 </div>
@@ -201,7 +228,7 @@ export const PlansPage = () => {
                                 <li>2 Decodificadores</li>
                                 <li>Instalación Gratis</li>
                             </ul>
-                            <Link to="/contacto" className="btn btn-outline" style={{ width: '100%' }}>Contratar Ahora</Link>
+                            <button onClick={() => handleStartFlow('inicio_ventas')} className="btn btn-outline" style={{ width: '100%' }}>Contratar Ahora</button>
                         </div>
                         <div className="price-card featured">
                             <span className="badge" style={{ marginBottom: 'var(--spacing-md)' }}>Ahorra 25%</span>
@@ -217,7 +244,7 @@ export const PlansPage = () => {
                                 <li>2 Líneas Móviles</li>
                                 <li>Soporte VIP</li>
                             </ul>
-                            <Link to="/contacto" className="btn btn-primary" style={{ width: '100%' }}>Contratar Ahora</Link>
+                            <button onClick={() => handleStartFlow('inicio_ventas')} className="btn btn-primary" style={{ width: '100%' }}>Contratar Ahora</button>
                         </div>
                         <div className="price-card">
                             <span className="badge" style={{ marginBottom: 'var(--spacing-md)' }}>Ahorra 30%</span>
@@ -234,7 +261,7 @@ export const PlansPage = () => {
                                 <li>Soporte VIP 24/7</li>
                                 <li>Instalación Premium</li>
                             </ul>
-                            <Link to="/contacto" className="btn btn-outline" style={{ width: '100%' }}>Contratar Ahora</Link>
+                            <button onClick={() => handleStartFlow('inicio_ventas')} className="btn btn-outline" style={{ width: '100%' }}>Contratar Ahora</button>
                         </div>
                     </div>
                 </div>
