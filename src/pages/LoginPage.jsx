@@ -122,6 +122,10 @@ export const LoginPage = () => {
             <button type="submit" className="btn btn-submit" disabled={isLoading}>
               {isLoading ? 'Iniciando sesión...' : 'Iniciar sesión'}
             </button>
+
+            <div style={{ marginTop: '1.5rem', textAlign: 'center', fontSize: '0.9rem', color: 'var(--color-text-secondary)' }}>
+              ¿No tienes una cuenta? <Link to="/registro" style={{ color: 'var(--color-accent-blue)', textDecoration: 'none' }}>Regístrate aquí</Link>
+            </div>
           </form>
         </div>
       </div>

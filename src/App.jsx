@@ -14,6 +14,7 @@ import { ArticlePage } from "./pages/ArticlePage.jsx";
 import { ContactPage } from "./pages/ContactPage.jsx";
 import { CustomerSupport } from "./pages/CustomerSupport.jsx";
 import { LoginPage } from "./pages/LoginPage.jsx";
+import { RegisterPage } from "./pages/RegisterPage.jsx";
 
 // Vistas Privadas (Asesores)
 import { Dashboard } from "./pages/Dashboard.jsx";
@@ -39,6 +40,7 @@ function App() {
 
       <Route path="/soporte" element={<CustomerSupport />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/registro" element={<RegisterPage />} />
 
       {/* 🏢 MUNDO PRIVADO (Requiere sesión de asesor o admin) */}
       <Route element={<ProtectedRoute allowedRoles={['asesor', 'admin']} />}>
