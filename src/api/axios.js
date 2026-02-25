@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '/api',   // Usa la variable de entorno o el proxy de Vite por defecto
+  // Si estamos en producción (Vercel), usa Render. Si estamos en local (localhost), usa '/api' (proxy).
+  baseURL: import.meta.env.PROD
+    ? 'https://udoconnect-backend.onrender.com/api'
+    : '/api',
   headers: {
     'Content-Type': 'application/json',
   },
