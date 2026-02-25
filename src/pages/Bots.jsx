@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { api } from '../api/axios.js';
-import { useRealtimeMessages } from '../hooks/useRealtimeMessages.js';
 import { ChatList } from '../components/chat/ChatList.jsx';
 import '../components/chat/ChatWidget.css';
 import './Bots.css';
@@ -40,12 +39,9 @@ export const Bots = () => {
     const [selectedSession, setSelected] = useState(null);
     const [selectedSid, setSelectedSid] = useState(null);
     const [loadSessions, setLoadSessions] = useState(true);
+    const [messages, setMessages] = useState([]);
+    const [loadMsgs, setLoadMsgs] = useState(false);
     const messagesAreaRef = useRef(null);
-
-    // Hook compartido para cargar mensajes de la sesión
-    const { messages, loading: loadMsgs } = useRealtimeMessages(
-        selectedSid, 'agente', 'advisor'
-    );
 
     const scrollToBottom = useCallback((behavior = 'instant') => {
         const el = messagesAreaRef.current;
@@ -59,21 +55,9 @@ export const Bots = () => {
     const fetchSessions = useCallback(async () => {
         setLoadSessions(true);
         try {
-            // Intentamos obtener las sesiones, pidiendo que vengan las que esten cerradas o directamente del endpoint regular 
-            // y filtramos localmente asumiendo que el api las podría retornar, o si no, el query 'estado=cerrada' podria ser soportado.
-            let response;
-            try {
-                response = await api.get('/chat/sessions', { params: { estado: 'cerrada' } });
-            } catch (e) {
-                response = await api.get('/chat/sessions');
-            }
-
-            const allSessions = response.data.sessions || [];
-            // Filtramos las cerradas por parte del frontend para asegurar que solo se muestre el historial de la DB de sesiones finalizadas
-            const historySessions = allSessions.filter(s => s.estado === 'cerrada' || s.estado === 'resuelta' || s.estado === 'finalizada' || (s.estado !== 'derivada_humano' && s.estado !== 'activa_bot' && s.estado !== 'esperando_input'));
-
-            setSessions(historySessions.length > 0 ? historySessions : allSessions);
-            // Nota: Si el endpoint ya filtró correctamente, o si queremos mostrar todas las sesiones de bot finalizadas
+            // Usando el nuevo endpoint que consolida historial por cliente
+            const response = await api.get('/chat/history/clients');
+            setSessions(response.data.sessions || []);
         } catch (err) {
             console.error('[Bots] sessions:', err);
         } finally {
@@ -83,9 +67,30 @@ export const Bots = () => {
 
     useEffect(() => { fetchSessions(); }, [fetchSessions]);
 
+    // Fetch client messages when a client is selected
+    useEffect(() => {
+        if (!selectedSid) {
+            setMessages([]);
+            return;
+        }
+        const fetchMsgs = async () => {
+            setLoadMsgs(true);
+            try {
+                // selectedSid is actually clientId in this view
+                const { data } = await api.get(`/chat/history/messages/${selectedSid}`);
+                setMessages(data.messages || []);
+            } catch (e) {
+                console.error('[Bots] messages:', e);
+            } finally {
+                setLoadMsgs(false);
+            }
+        };
+        fetchMsgs();
+    }, [selectedSid]);
+
     const handleSelect = (session) => {
         setSelected(session);
-        setSelectedSid(session.id_sesion);
+        setSelectedSid(session.id_sesion); // this is id_cliente from backend
     };
 
     return (
@@ -136,18 +141,22 @@ export const Bots = () => {
                                         </div>
                                         <div className="lc-chat-meta">
                                             {selectedSession.canal === 'web' ? '🌐 Web' : '✈️ Telegram'}
-                                            &nbsp;·&nbsp;{selectedSession.id_sesion.slice(0, 8)}...
+                                            &nbsp;·&nbsp;Consolidado
                                         </div>
                                     </div>
                                 </div>
                                 <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
                                     <button
                                         className="lc-icon-btn"
-                                        onClick={() => setSelectedSid(sid => { const s = sid; setSelectedSid(null); setTimeout(() => setSelectedSid(s), 0); return null; })}
+                                        onClick={() => {
+                                            const sid = selectedSid;
+                                            setSelectedSid(null);
+                                            setTimeout(() => setSelectedSid(sid), 50);
+                                        }}
                                         title="Refrescar mensajes"
                                     >🔄</button>
                                     <span className="lc-estado-badge lc-estado--bot" style={{ background: '#94a3b822', color: '#94a3b8', border: '1px solid #94a3b844' }}>
-                                        {selectedSession.estado === 'cerrada' || selectedSession.estado === 'resuelta' ? 'Cerrada' : selectedSession.estado}
+                                        Historial Completo
                                     </span>
                                 </div>
                             </div>
@@ -168,8 +177,6 @@ export const Bots = () => {
                                     ))
                                 )}
                             </div>
-
-                            {/* Input section removed since it's history-only viewing */}
                         </div>
                     )}
                 </div>
