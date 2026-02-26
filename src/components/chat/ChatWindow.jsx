@@ -41,6 +41,13 @@ export const ChatWindow = ({ messages = [], currentRole = 'usuario' }) => {
                 else if (isBot) bubbleClass += ' cw-bubble--bot';
                 else bubbleClass += ' cw-bubble--other';
 
+                // Procesar el texto para forzar saltos de línea en las opciones
+                let content = msg.contenido || '';
+                if (isBot && typeof content === 'string') {
+                    // Reemplaza " - " antes de un número de opción (ej. " - 1.") por un salto de línea
+                    content = content.replace(/\s*-\s*(?=\d+\.)/g, '\n');
+                }
+
                 return (
                     <div key={msg.id_mensaje} className={`cw-row ${isOwn ? 'cw-row--right' : 'cw-row--left'}`}>
                         {/* Avatar */}
@@ -51,7 +58,7 @@ export const ChatWindow = ({ messages = [], currentRole = 'usuario' }) => {
                         )}
                         <div className="cw-bubble-wrapper">
                             <div className={bubbleClass}>
-                                {msg.contenido}
+                                {content}
                             </div>
                             <span className="cw-time">{formatTime(msg.fecha_creacion)}</span>
                         </div>
