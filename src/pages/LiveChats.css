@@ -1,0 +1,434 @@
+/* ============================================
+   LIVECHATS — Advisor Chat Interface
+   Matches UdoConnect client-facing design
+   ============================================ */
+
+/* ── Page wrapper ── */
+.lc-page {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 2 * var(--spacing-xl, 24px));
+  gap: 20px;
+}
+
+/* ── Header ── */
+.lc-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.lc-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #f1f5f9;
+  margin: 0 0 4px;
+  letter-spacing: -0.02em;
+}
+
+.lc-subtitle {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.lc-refresh-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.lc-refresh-btn:hover {
+  border-color: rgba(0, 212, 255, 0.3);
+  color: #00d4ff;
+  background: rgba(0, 212, 255, 0.06);
+}
+
+/* ── Two-panel container ── */
+.lc-container {
+  display: flex;
+  gap: 16px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ── Left panel (session list) ── */
+.lc-panel-left {
+  width: 300px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.lc-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+}
+
+.lc-count {
+  background: linear-gradient(135deg, #0066ff, #00d4ff);
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  min-width: 22px;
+  text-align: center;
+}
+
+/* ── Right panel (chat window) ── */
+.lc-panel-right {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* ── Empty state ── */
+.lc-empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px;
+  text-align: center;
+}
+
+.lc-empty-icon {
+  font-size: 3.5rem;
+  opacity: 0.4;
+}
+
+.lc-empty-state h3 {
+  color: #e2e8f0;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.lc-empty-state p {
+  color: #475569;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* ── Chat area ── */
+.lc-chat {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Chat header */
+.lc-chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  flex-shrink: 0;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.lc-chat-client {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lc-chat-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0066ff, #00d4ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: white;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.lc-chat-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+/* Nombre del cliente como botón clickeable */
+.lc-client-name-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  cursor: pointer;
+  transition: color 0.15s;
+  text-align: left;
+  font-family: inherit;
+}
+
+.lc-client-name-btn:hover {
+  color: #00d4ff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.lc-chat-meta {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 1px;
+}
+
+.lc-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 6px;
+  border-radius: 8px;
+  transition: background 0.15s;
+  color: #64748b;
+}
+
+.lc-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #00d4ff;
+}
+
+/* Estado badges */
+.lc-estado-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.lc-estado--activo {
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.lc-estado--bot {
+  background: rgba(99, 102, 241, 0.12);
+  color: #818cf8;
+  border: 1px solid rgba(99, 102, 241, 0.25);
+}
+
+/* ── Messages area ── */
+.lc-messages-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.08) transparent;
+}
+
+.lc-messages-area::-webkit-scrollbar {
+  width: 4px;
+}
+
+.lc-messages-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.lc-messages-area::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.lc-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex: 1;
+  color: #475569;
+  font-size: 0.9rem;
+}
+
+/* ── Message bubbles ── */
+.lc-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  max-width: 75%;
+}
+
+.lc-row--left {
+  align-self: flex-start;
+}
+
+.lc-row--right {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.lc-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.lc-bubble-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.lc-row--right .lc-bubble-wrap {
+  align-items: flex-end;
+}
+
+.lc-sender {
+  font-size: 0.7rem;
+  color: #475569;
+  font-weight: 500;
+  padding: 0 4px;
+}
+
+.lc-bubble {
+  padding: 9px 14px;
+  border-radius: 14px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Asesor → derecha, azul */
+.lc-bubble--asesor {
+  background: linear-gradient(135deg, #0055d4, #0088ee);
+  color: white;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 102, 255, 0.35);
+}
+
+/* Bot → izquierda, gris oscuro */
+.lc-bubble--bot {
+  background: rgba(99, 102, 241, 0.12);
+  color: #c4b5fd;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-bottom-left-radius: 4px;
+}
+
+/* Cliente → izquierda, gris */
+.lc-bubble--cliente {
+  background: rgba(255, 255, 255, 0.07);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom-left-radius: 4px;
+}
+
+.lc-time {
+  font-size: 0.68rem;
+  color: #475569;
+  padding: 0 4px;
+}
+
+/* ── Input area ── */
+.lc-input-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.lc-input {
+  flex: 1;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #f1f5f9;
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: border-color 0.15s;
+  outline: none;
+}
+
+.lc-input::placeholder {
+  color: #4b5563;
+}
+
+.lc-input:focus {
+  border-color: rgba(0, 212, 255, 0.35);
+  background: rgba(0, 212, 255, 0.04);
+}
+
+.lc-input:disabled {
+  opacity: 0.5;
+}
+
+.lc-send-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0066ff, #00d4ff);
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s;
+  box-shadow: 0 3px 10px rgba(0, 102, 255, 0.4);
+}
+
+.lc-send-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 16px rgba(0, 102, 255, 0.55);
+}
+
+.lc-send-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+  box-shadow: none;
+}

@@ -1,0 +1,207 @@
+/* src/pages/ManagerDashboard.css */
+
+.manager-dashboard {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: var(--text-color, #e0e0e0);
+    /* Assuming a dark theme like the rest of the app based on other files */
+}
+
+/* Headers */
+.manager-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--accent-light, #1de9b6);
+}
+
+.manager-header p {
+    color: var(--text-muted, #a0aab2);
+    margin-bottom: 2rem;
+}
+
+/* KPIs Section */
+.manager-kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.kpi-card {
+    background: var(--bg-hover, rgba(29, 233, 182, 0.05));
+    border: 1px solid var(--border-color, rgba(29, 233, 182, 0.1));
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border-color: var(--accent-color, #00bfa5);
+}
+
+.kpi-card h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted, #a0aab2);
+    margin-bottom: 0.5rem;
+}
+
+.kpi-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+}
+
+.kpi-recaudado .kpi-value {
+    color: var(--accent-color, #00bfa5);
+}
+
+.kpi-por-cobrar .kpi-value {
+    color: #ff5252;
+}
+
+/* Grid layout */
+.manager-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+@media (max-width: 992px) {
+    .manager-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.manager-side-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.manager-section {
+    background: var(--bg-hover, rgba(29, 233, 182, 0.05));
+    border: 1px solid var(--border-color, rgba(29, 233, 182, 0.1));
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.manager-section h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+    padding-bottom: 0.75rem;
+}
+
+/* Tables */
+.manager-table-container {
+    overflow-x: auto;
+}
+
+.manager-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.manager-table th,
+.manager-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.manager-table th {
+    color: var(--text-muted, #a0aab2);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.manager-table tr:last-child td {
+    border-bottom: none;
+}
+
+.manager-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-danger {
+    color: #ff5252;
+    font-weight: 600;
+}
+
+/* Lists */
+.manager-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.manager-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.manager-list-item:last-child {
+    border-bottom: none;
+}
+
+.badge {
+    background: rgba(29, 233, 182, 0.1);
+    color: var(--accent-light, #1de9b6);
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.badge.admin,
+.badge.gerente {
+    background: rgba(255, 82, 82, 0.1);
+    color: #ff5252;
+}
+
+.employee-item {
+    align-items: flex-start;
+}
+
+.employee-name {
+    display: block;
+    font-weight: 600;
+}
+
+.employee-user {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted, #a0aab2);
+}
+
+.manager-loading,
+.manager-error,
+.manager-empty {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted, #a0aab2);
+}
+
+.manager-error {
+    color: #ff5252;
+}

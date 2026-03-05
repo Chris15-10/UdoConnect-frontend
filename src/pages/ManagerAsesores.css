@@ -1,0 +1,606 @@
+/* ManagerAsesores.css — estilos extra para el panel de asesores */
+
+/* Botón añadir en la sidebar */
+.ma-add-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    width: calc(100% - 24px);
+    margin: 0 12px 10px;
+    padding: 9px 14px;
+    border-radius: 10px;
+    border: 1.5px dashed rgba(29, 233, 182, 0.4);
+    background: rgba(29, 233, 182, 0.04);
+    color: #1de9b6;
+    font-size: 0.83rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.ma-add-toggle-btn:hover,
+.ma-add-toggle-btn--active {
+    background: rgba(29, 233, 182, 0.12);
+    border-color: rgba(29, 233, 182, 0.7);
+}
+
+/* Icono de editar en items de la lista */
+.mc-item-edit-icon {
+    color: rgba(100, 116, 139, 0.5);
+    flex-shrink: 0;
+    transition: color 0.2s;
+}
+
+.mc-item:hover .mc-item-edit-icon {
+    color: #1de9b6;
+}
+
+/* Fila de acciones (guardar + eliminar) */
+.ma-actions-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+}
+
+.ma-actions-row .ma-save-btn {
+    margin-top: 0;
+}
+
+/* Botón eliminar */
+.ma-delete-btn {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 18px;
+    border: 1.5px solid rgba(239, 68, 68, 0.4);
+    border-radius: 10px;
+    background: rgba(239, 68, 68, 0.07);
+    color: #f87171;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.ma-delete-btn:hover:not(:disabled) {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.7);
+}
+
+.ma-delete-btn--confirm {
+    background: rgba(239, 68, 68, 0.18);
+    border-color: #ef4444;
+    color: #fca5a5;
+    animation: ma-pulse 0.5s ease;
+}
+
+.ma-delete-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@keyframes ma-pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Sección de edición */
+.ma-edit-section {
+    margin-top: 16px;
+    padding: 16px;
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+}
+
+.ma-edit-title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 14px;
+}
+
+.ma-field-group {
+    margin-bottom: 12px;
+}
+
+.ma-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.72rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 5px;
+}
+
+.ma-optional {
+    font-weight: 400;
+    text-transform: none;
+    color: #475569;
+}
+
+.ma-input {
+    width: 100%;
+    padding: 9px 12px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    color: #e2e8f0;
+    font-size: 0.88rem;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.ma-input:focus {
+    border-color: rgba(29, 233, 182, 0.4);
+}
+
+.ma-input::placeholder {
+    color: #475569;
+}
+
+.ma-pass-wrap {
+    position: relative;
+}
+
+.ma-pass-wrap .ma-input {
+    padding-right: 38px;
+}
+
+.ma-eye-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.ma-eye-btn:hover {
+    color: #1de9b6;
+}
+
+.ma-save-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #1de9b6, #00d4ff);
+    color: #0f1729;
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: pointer;
+    margin-top: 14px;
+    transition: opacity 0.2s;
+}
+
+.ma-save-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.ma-save-btn:not(:disabled):hover {
+    opacity: 0.9;
+}
+
+.ma-msg {
+    font-size: 0.82rem;
+    margin-top: 8px;
+    padding: 7px 10px;
+    border-radius: 7px;
+}
+
+.ma-msg--ok {
+    background: rgba(29, 233, 182, 0.1);
+    color: #1de9b6;
+}
+
+.ma-msg--error {
+    background: rgba(239, 68, 68, 0.1);
+    color: #f87171;
+}
+
+/* Formulario añadir */
+.ma-add-form {
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 24px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.ma-add-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1de9b6;
+    margin-bottom: 20px;
+}
+
+.ma-add-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+@media (max-width: 500px) {
+    .ma-add-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Página con pestañas ── */
+.ma-page-wrap {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.ma-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 12px 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    flex-shrink: 0;
+}
+
+.ma-tab {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 10px 10px 0 0;
+    background: transparent;
+    color: #64748b;
+    font-size: 0.87rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.ma-tab:hover {
+    color: #e2e8f0;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.ma-tab--active {
+    background: rgba(29, 233, 182, 0.08);
+    color: #1de9b6;
+    border-bottom: 2px solid #1de9b6;
+}
+
+/* ── Panel de asignación ── */
+.ma-asignacion-wrap {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Sidebar de asesores */
+.ma-asig-sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    overflow-y: auto;
+    padding: 14px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ma-asig-title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 0 6px 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Cards de asesores */
+.ma-asig-card {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(15, 23, 42, 0.3);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.ma-asig-card:hover {
+    background: rgba(29, 233, 182, 0.05);
+    border-color: rgba(29, 233, 182, 0.2);
+}
+
+.ma-asig-card--active {
+    background: rgba(29, 233, 182, 0.08);
+    border-color: rgba(29, 233, 182, 0.35);
+}
+
+.ma-asig-card--full {
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.ma-asig-card-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.ma-asig-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1de9b6, #00d4ff);
+    color: #0f1729;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.ma-asig-card-name {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.ma-asig-card-sub {
+    font-size: 0.72rem;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+.ma-asig-full-badge {
+    margin-left: auto;
+    font-size: 0.62rem;
+    font-weight: 800;
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.12);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.ma-asig-progress-wrap {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.ma-asig-progress-bar {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.3s;
+}
+
+/* Panel de detalle */
+.ma-asig-panel {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.ma-asig-panel-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ma-asig-panel-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #e2e8f0;
+    margin-bottom: 8px;
+}
+
+.ma-asig-panel-slots {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.ma-slot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    transition: all 0.2s;
+}
+
+.ma-slot--used {
+    background: #1de9b6;
+    border-color: #1de9b6;
+}
+
+.ma-slot--free {
+    background: transparent;
+}
+
+.ma-slot-label {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin-left: 4px;
+}
+
+/* Columnas de asignable/asignado */
+.ma-asig-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.ma-asig-col {
+    background: rgba(15, 23, 42, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 14px;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.ma-asig-col-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+}
+
+.ma-asig-empty {
+    font-size: 0.82rem;
+    color: #475569;
+    text-align: center;
+    padding: 16px 0;
+}
+
+.ma-asig-full-msg {
+    font-size: 0.82rem;
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.08);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-top: 6px;
+}
+
+/* Items de clientes */
+.ma-asig-cliente {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 6px;
+    border-radius: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    transition: background 0.15s;
+}
+
+.ma-asig-cliente:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.ma-asig-cl-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #334155, #1e293b);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #94a3b8;
+    flex-shrink: 0;
+}
+
+.ma-asig-cl-avatar--dim {
+    opacity: 0.55;
+}
+
+.ma-asig-cl-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.ma-asig-cl-name {
+    font-size: 0.83rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ma-asig-cl-email {
+    font-size: 0.71rem;
+    color: #64748b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ma-asig-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.ma-asig-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.ma-asig-btn--add {
+    background: rgba(29, 233, 182, 0.12);
+    color: #1de9b6;
+}
+
+.ma-asig-btn--add:not(:disabled):hover {
+    background: rgba(29, 233, 182, 0.25);
+}
+
+.ma-asig-btn--remove {
+    background: rgba(239, 68, 68, 0.1);
+    color: #f87171;
+}
+
+.ma-asig-btn--remove:not(:disabled):hover {
+    background: rgba(239, 68, 68, 0.2);
+}

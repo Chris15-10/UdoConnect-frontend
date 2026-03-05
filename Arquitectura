@@ -1,0 +1,33 @@
+proyecto-admin/
+├── public/
+│   └── index.html             # El archivo HTML principal
+├── src/
+│   ├── api/                   # Lógica de conexión (Axios)
+│   │   └── axios.js           # Configuración base de Axios
+│   ├── assets/                # Imágenes y recursos estáticos
+│   ├── components/            # Componentes reutilizables
+│   │   ├── layout/
+│   │   │   ├── Layout.jsx     # Contenedor principal (Sidebar + Contenido)
+│   │   │   └── Sidebar.jsx    # Menú lateral de navegación
+│   │   ├── chat/              # Componentes específicos del Chat en Vivo
+│   │   │   ├── ChatList.jsx   
+│   │   │   └── ChatWindow.jsx 
+│   │   └── ui/                # Botones, Modales, Badges, etc.
+│   ├── context/               # Estados globales
+│   │   ├── AuthContext.jsx    # Manejo de sesión
+│   │   └── ChatContext.jsx    # Manejo de mensajes en tiempo real
+│   ├── pages/                 # Las vistas de tu panel
+│   │   ├── LoginPage.jsx      
+│   │   ├── Dashboard.jsx      
+│   │   ├── LiveChats.jsx      # El núcleo del chatbot para los asesores
+│   │   ├── Calls.jsx          
+│   │   ├── Clients.jsx        
+│   │   ├── Advisors.jsx       
+│   │   ├── Bots.jsx           
+│   │   └── Categories.jsx     
+│   ├── App.jsx                # Enrutador principal
+│   ├── index.css              # Estilos globales y variables CSS
+│   ├── main.jsx               # Punto de entrada de React
+│   └── ProtectedRoute.jsx     # Protección de rutas privadas
+├── package.json
+└── vite.config.js             (Asumiendo que usas Vite)

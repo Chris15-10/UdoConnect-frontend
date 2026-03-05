@@ -1,0 +1,221 @@
+.admin-shell {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #1a1f3b 0, #050816 40%, #020617 100%);
+  color: #f9fafb;
+}
+
+.admin-sidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem 1.25rem;
+  gap: 1.5rem;
+  background: linear-gradient(180deg, rgba(15,23,42,0.98), rgba(15,23,42,1));
+  border-right: 1px solid rgba(148, 163, 184, 0.30);
+  backdrop-filter: blur(16px);
+}
+
+.admin-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.admin-logo-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 20%, #38bdf8, #4f46e5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #0b1120;
+}
+
+.admin-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-brand-title {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.admin-brand-subtitle {
+  font-size: 0.78rem;
+  color: #9ca3af;
+}
+
+.admin-user-card {
+  margin-top: 0.25rem;
+  padding: 0.9rem 0.9rem;
+  border-radius: 0.9rem;
+  background: radial-gradient(circle at top left, rgba(56,189,248,0.18), rgba(15,23,42,1));
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.admin-user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: rgba(15,23,42,1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #e5e7eb;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+}
+
+.admin-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.admin-user-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.admin-user-role {
+  font-size: 0.75rem;
+  color: #a5b4fc;
+}
+
+.admin-menu {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.admin-menu-item {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.7rem;
+  border-radius: 0.75rem;
+  color: #e5e7eb;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.16s ease, transform 0.08s ease, box-shadow 0.16s ease;
+}
+
+.admin-menu-item:hover {
+  background: rgba(15, 23, 42, 0.95);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.65);
+}
+
+.admin-menu-item--active {
+  background: linear-gradient(90deg, rgba(56,189,248,0.18), rgba(129,140,248,0.35));
+  box-shadow: 0 8px 24px rgba(56, 189, 248, 0.35);
+}
+
+.admin-menu-icon {
+  font-size: 1.1rem;
+}
+
+.admin-menu-label {
+  flex: 1;
+  text-align: left;
+}
+
+.admin-sidebar-footer {
+  margin-top: auto;
+}
+
+.admin-logout-btn {
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: transparent;
+  color: #e5e7eb;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  transition: background 0.16s ease, border-color 0.16s ease, transform 0.08s ease;
+}
+
+.admin-logout-btn:hover {
+  background: rgba(15,23,42,0.95);
+  border-color: rgba(248, 113, 113, 0.9);
+  transform: translateY(-1px);
+}
+
+.admin-main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.admin-topbar {
+  padding: 1.5rem 2rem 0.75rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+  backdrop-filter: blur(14px);
+  background: linear-gradient(180deg, rgba(15,23,42,0.96), rgba(15,23,42,0.75));
+}
+
+.admin-topbar-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.admin-topbar-subtitle {
+  margin-top: 0.15rem;
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+.admin-content {
+  padding: 1.5rem 2rem 2rem;
+  min-height: 0;
+}
+
+@media (max-width: 960px) {
+  .admin-shell {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-sidebar {
+    grid-row: 2;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 1rem;
+  }
+
+  .admin-menu {
+    flex-direction: row;
+  }
+
+  .admin-main {
+    grid-row: 1;
+  }
+
+  .admin-content {
+    padding: 1.25rem 1.25rem 1.75rem;
+  }
+}
+
