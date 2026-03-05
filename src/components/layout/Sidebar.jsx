@@ -39,7 +39,6 @@ export const Sidebar = () => {
           <span className="sidebar-brand-subtitle">Panel de Gestión</span>
         </div>
       </div>
-
       {/* User info */}
       {user && (
         <div className="sidebar-user">
